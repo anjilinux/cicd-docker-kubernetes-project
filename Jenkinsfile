@@ -13,6 +13,7 @@ stages {
       withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
           sh 'docker build -t  anjireddy3993/flaskpro:latest   .'
           sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
+          sh 'docker run -d -p 5000:5000 anjireddy3993/flaskpro'
           sh 'docker push  anjireddy3993/flaskpro:latest '
 
        
