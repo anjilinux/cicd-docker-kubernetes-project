@@ -27,6 +27,7 @@ stages {
           // sh 'kubectl apply -f dp3.yaml'
           // sh 'kubectl apply -f pod.yaml '
           sh 'kubectl apply -f nginx1.yaml'
+           sleep(time: 200, unit: "SECONDS")
           sh 'kubectl port-forward  nginx1  5001:5000 '
     }
 
