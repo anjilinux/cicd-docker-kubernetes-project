@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nginx-dp
+  labels: 
+    app: nginx-dp
+spec: 
+  replicas: 3
+  selector:
+    matchLabels: 
+       app: nginx-dp
+  template:    
+      metadata: 
+        labels: 
+         app: nginx-dp
+      spec: 
+       containers: 
+         - name: nginx-dp
+           image:  anjireddy3993/flaskpro:latest
+           ports: 
+            - containerPort: 80        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: outside
+spec: 
+  selector: 
+    name: nginx-dp
+  type: NodePort
+  ports: 
+  - protocol: TCP
+    port: 80  
+    targetPort: 80
+    nodePort: 30008
