@@ -24,6 +24,10 @@ stages {
        withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: 'kubernetes-admin@kubernetes', credentialsId: 'k8file', namespace: '', restrictKubeConfigAccess: false, serverUrl: ' https://192.168.122.31:6443') {
           sh 'kubectl get nodes'
           sh ' kubectl get pods'
+          // sh 'kubectl apply -f dp3.yaml'
+          // sh 'kubectl apply -f pod.yaml '
+          sh 'kubectl apply -f nginx1.yaml'
+          sh 'kubectl port-forward  nginx1  5001:5000 '
     }
 
 
